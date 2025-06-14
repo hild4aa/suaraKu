@@ -4,7 +4,46 @@
 @section('content')
 <div class="container-fluid">
   <div class="row">
-    @include('admin.sidebar')
+     <!-- Sidebar -->
+    <div class="col-md-3 sidebar p-0">
+      <div class="d-flex flex-column p-3 align-items-center" style="height: 100vh;">
+
+        <!-- Admin Info -->
+        <div class="text-center my-4">
+          <img src="" class="rounded-circle mb-2" width="100" height="100" alt="Foto Admin">
+          <h5>Admin Sistem</h5>
+        </div>
+
+        <!-- Menu -->
+        <ul class="nav nav-pills flex-column mb-auto w-100">
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+              <i class="bi bi-house-door"></i> Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="bi bi-person-badge"></i> Daftar Psikolog
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="bi bi-journal-plus"></i> Tambah Edukasi
+            </a>
+          </li>
+        </ul>
+
+        <hr class="w-100">
+        
+        <!-- Logout -->
+        <form action="" method="POST" class="w-100">
+          @csrf
+          <button type="submit" class="btn btn-danger w-100">Logout</button>
+        </form>
+      </div>
+    </div>
+
+
     
     <div class="col-md-9 ms-sm-auto p-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">

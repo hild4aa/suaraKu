@@ -2,29 +2,28 @@
 
 @section('title', 'Layanan Psikologi Online')
 @section('content')
-<div class="container py-5">
+
+<div class="container py-5 position-relative">
+
+  <!-- Tombol Login & Register di pojok kanan atas -->
+  <div class="position-absolute top-0 end-0 mt-3 me-3">
+    <a href="/login" class="btn btn-outline-primary me-2">
+      <i class="bi bi-box-arrow-in-right"></i> Login
+    </a>
+    <a href="/register" class="btn btn-primary">
+      <i class="bi bi-person-plus"></i> Register
+    </a>
+  </div>
+
   <!-- Hero Section -->
   <div class="row align-items-center mb-5">
     <div class="col-md-6">
       <h1 class="display-4 fw-bold mb-4">Layanan Dukungan Psikologi</h1>
       <p class="lead">Laporkan masalah Anda secara aman dan rahasia. Dapatkan dukungan dari psikolog profesional.</p>
       <div class="d-grid gap-2 d-md-flex">
-        
-        <a href="/laporan" class="btn btn-primary btn-lg px-4 me-md-2">
-          <i class="bi bi-plus-circle"></i> Buat Laporan
-        </a>
         <a href="/edukasi" class="btn btn-outline-secondary btn-lg px-4">
           <i class="bi bi-book"></i> Materi Edukasi
         </a>
-        <div class="mt-4">
-        <a href="/login" class="btn btn-outline-primary btn-lg me-2">
-            <i class="bi bi-box-arrow-in-right"></i> Login
-        </a>
-        <a href="/register" class="btn btn-primary btn-lg">
-            <i class="bi bi-person-plus"></i> Register
-        </a>
-</div>
-
       </div>
     </div>
     <div class="col-md-6">
@@ -86,5 +85,6 @@
       </div>
     </div>
   </div>
+
 </div>
 @endsection

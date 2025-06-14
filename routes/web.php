@@ -37,37 +37,45 @@ Route::get('/register', function () {
     return view('psikolog.registrasi');
 });
 
-use Illuminate\Http\Request;
-
-Route::post('/register', function (Request $request) {
-    // Simulasi penyimpanan, hanya untuk demo
-    // Kamu bisa dd($request->all()); untuk debugging
-
-    return redirect('/')->with('message', 'Registrasi berhasil! Silakan login.');
+Route::get('/psikolog/dashboard', function () {
+    return view('psikolog.dashboard-p');
 });
 
-
-Route::post('/login', function (Request $request) {
-    $email = $request->input('email');
-    $password = $request->input('password');
-
-    // Simulasi user (hardcoded)
-    $dummyEmail = 'psikolog@mail.com';
-    $dummyPassword = 'password123';
-
-    if ($email === $dummyEmail && $password === $dummyPassword) {
-        // Login berhasil, redirect ke dashboard
-        return redirect('/dashboard')->with('message', 'Login berhasil!');
-    } else {
-        // Gagal login
-        return redirect('/login')->with('error', 'Email atau password salah!');
-    }
+Route::get('/psikolog/detail-laporan', function () {
+    return view('psikolog.detail-tiket');
 });
 
-// Route::get('/', function () {
-//     return view('psikolog.dashboard-p');
-// });
+Route::get('/psikolog/message', function (){
+    return view('psikolog.message--');
+});
 
-// Route::get('/', function () {
-//     return view('admin.dashboard-a');
-// });
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard-a');
+});
+
+Route::get('/admin/detail-psikolog', function () 
+{
+    return view('admin.verifikasi-psikolog');
+});
+
+Route::get('/admin/tambah-edukasi', function ()
+{
+    return view('admin.tulis-edukasi');
+});
+
+Route::get('/korban/halaman-korban', function () {
+    return view('korban.halaman-korban');
+});
+
+Route::get('/korban/buat-laporan', function () {
+    return view('korban.laporan-create');
+});
+
+Route::get('/korban/laporan-saya', function () {
+    return view('korban.laporan-saya');
+});
+
+Route::get('/korban/message', function () {
+    return view('korban.message-korban');
+});
+
