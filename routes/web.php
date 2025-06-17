@@ -1,81 +1,37 @@
 <?php
+// routes/web.php
 
+use App\Livewire\LandingPage;
+use App\Livewire\Auth\Login;
+use App\Livewire\Edukasi;
+use App\Livewire\Register;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+// Rute yang bisa diakses oleh SEMUA ORANG (tamu & yang sudah login)
+Route::get(uri: '/', action: LandingPage::class)->name('landing_page');
+Route::get(uri: '/edukasi', action: Edukasi::class)->name('Edukasi');
 
-Route::get('/', function () {
-    return view('welcome');
+// Rute HANYA untuk TAMU (yang belum login)
+Route::middleware('guest')->group(function () {
+    Route::get('/login', Login::class)->name('login');
+    Route::get('/register', Register::class)->name('register');
+
 });
 
-Route::get('/', function () {
-    return view('home');
-});
+// Rute HANYA untuk PENGGUNA YANG SUDAH LOGIN
+Route::middleware('auth')->group(function () {
 
-Route::get('/laporan', function () {
-    return view('korban.laporan-create');
-});
+    // Panggil file rute untuk setiap role
+    require __DIR__.'/admin.php';
+    require __DIR__.'/psikolog.php';
+    require __DIR__.'/korban.php';
 
-Route::get('/edukasi', function () {
-    return view('korban.edukasi');
+    // Rute Logout
+    Route::post('/logout', function () {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect()->route('login');
+    })->name('logout');
 });
-
-Route::get('/login', function () {
-    return view('psikolog.login');
-});
-
-Route::get('/register', function () {
-    return view('psikolog.registrasi');
-});
-
-Route::get('/psikolog/dashboard', function () {
-    return view('psikolog.dashboard-p');
-});
-
-Route::get('/psikolog/detail-laporan', function () {
-    return view('psikolog.detail-tiket');
-});
-
-Route::get('/psikolog/message', function (){
-    return view('psikolog.message--');
-});
-
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard-a');
-});
-
-Route::get('/admin/detail-psikolog', function () 
-{
-    return view('admin.verifikasi-psikolog');
-});
-
-Route::get('/admin/tambah-edukasi', function ()
-{
-    return view('admin.tulis-edukasi');
-});
-
-Route::get('/korban/halaman-korban', function () {
-    return view('korban.halaman-korban');
-});
-
-Route::get('/korban/buat-laporan', function () {
-    return view('korban.laporan-create');
-});
-
-Route::get('/korban/laporan-saya', function () {
-    return view('korban.laporan-saya');
-});
-
-Route::get('/korban/message', function () {
-    return view('korban.message-korban');
-});
-
